@@ -5,15 +5,15 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Пример работы Websocket-клиента</h1>
+    <h1>Websocket-client example</h1>
     <form action="" name="messages">
-        <div class="row">Текст: <input type="text" name="msg"></div>
-        <div class="row"><input type="submit" value="Отправить"></div>
+        <div class="row">Message: <input type="text" name="msg"></div>
+        <div class="row"><input type="submit" value="Send message"></div>
     </form>
     <div id="status"></div>
     <script>
         window.onload = function() {
-            var socket = new WebSocket("ws://echo.websocket.org")
+            var socket = new WebSocket("wss://ws.postman-echo.com/raw")
             var status = document.querySelector("#status")
 
             socket.onopen = function(event) {
@@ -22,9 +22,9 @@
 
             socket.onclose = function(event) {
                 if (event.wasClean) {
-                    status.innerHTML = "Connection was successfully closed";
+                    status.innerHTML = "Connection was closed successfully";
                 } else {
-                    status.innerHTML = "Connection was closed";
+                    status.innerHTML = "Connection was closed anyway";
                 }
                 status.innerHTML = "<br>code: " + event.code + ", reason: " + event.reason;
             }
